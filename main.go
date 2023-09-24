@@ -3,11 +3,10 @@ package main
 import (
 	"database/sql"
 	"log"
-	"net/http"
 
+	"github.com/brandoniu/lets-go/api"
 	"github.com/brandoniu/lets-go/store"
 
-	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
 )
 
@@ -20,18 +19,9 @@ func main() {
 
 	store := store.New(db)
 
-	r := gin.Default()
+	app := api.NewAPI(store)
 
-	r.GET("/books", func(c *gin.Context) {
-		books, err := store.GetAllBooks()
-		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-			return
-		}
-		c.JSON(http.StatusOK, books)
-	})
-
-	r.Run(":8080")
+	app.Engine.Run(":8080")
 
 	
 }
