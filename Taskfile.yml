@@ -1,0 +1,13 @@
+version: "3"
+
+tasks:
+  build:
+    cmds:
+      - go build -v -i main.go
+  run:
+    cmds:
+      - go run main.go
+
+  # assets:
+  #   cmds:
+  #     - esbuild --bundle --minify css/index.css > public/bundle.css
