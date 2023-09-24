@@ -10,14 +10,15 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/bookstore
+      - DATABASE_URL=postgres://postgres:password@localhost:5432/books?sslmode=disable
+      # - DATABASE_URL=postgres://postgres:password@db:5432/bookstore
 
   db:
     image: postgres:13
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=bookstore
+      - POSTGRES_DB=books
     volumes:
       - pgdata:/var/lib/postgresql/data
 

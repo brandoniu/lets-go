@@ -39,3 +39,32 @@
 ## start the services
 
 `docker-compose up`
+
+### Kubernetes, running local solution with EKS
+
+- install `kubectl` to configure communicate with cluster
+  `brew install kubernetes-cli`
+- convert Docker compose to Kubernetes manifests using `kompose`
+  `brew install kompose`
+- generate Kubernetes manifest for deployments, services, and persistent volume
+  `kompose convert -f docker-compose.yml`
+- using Helm, a package manger for Kubernetes due to generated manifests not perfect for PostgreSQL deployment
+- add the Bitnami helm repository and install PostgreSQL chart
+  `helm repo add bitnami https://charts.bitnami.com/bitnami`
+  `helm install my-postgres bitnami/postgresql`
+- make note of the connection credentials Helm outputs. update app configuration or secrets to use these credentials
+- deploy your app
+  `kubectl apply -f <generated-deployment-file>.yml`
+  `kubectl apply -f <generated-service-file>.yml`
+- Ensure the environment variables in your application's deployment manifest (especially DATABASE_URL) are set correctly, pointing to the PostgreSQL service deployed earlier.
+- Access the app: If your application's service type is LoadBalancer (common in cloud environments), it will get an external IP address. Use kubectl get svc to check. If you're using Minikube, you can access the app with minikube service <service-name>.
+
+- Storage: Ensure that you're using the right storage solution for your database in Kubernetes. The default storage class might not be suitable for production workloads.
+
+- Configuration & Secrets: Use Kubernetes ConfigMaps and Secrets to manage configurations and sensitive data.
+
+- Scaling: With Kubernetes, you can easily scale your app using ReplicaSets.
+
+- Monitoring & Logging: Consider adding solutions like Prometheus and Grafana for monitoring and Loki or ELK stack for logging.
+
+- Network Policies: Define network policies for better security.
