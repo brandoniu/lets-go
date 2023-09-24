@@ -24,3 +24,18 @@
 
 `INSERT INTO books (title, author) VALUES ( 'DATA-ORIENTED DESIGN', 'RICHARD FABIAN');`
 `INSERT INTO books (title, author) VALUES ( 'Software Engineering at Google', 'Winters');`
+
+### Docker
+
+`docker build -t lets-go-app .`
+`docker run -p 8080:8080 lets-go-app`
+
+### Docker compose
+
+## build the services: ensure the app and database services run in a linked environment and can communicate with each other (ensure go application uses `DATABASE_URL` environment to connect to PostgreSQL)
+
+`docker-compose build`
+
+## start the services
+
+`docker-compose up`
