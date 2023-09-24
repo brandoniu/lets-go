@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"log"
+	"os"
 
 	"github.com/brandoniu/lets-go/api"
 	"github.com/brandoniu/lets-go/store"
@@ -11,10 +12,18 @@ import (
 )
 
 func main() {
-	connStr := "user=postgres dbname=books sslmode=disable password=mypassword"
-	db, err := sql.Open("postgres", connStr)
+	databaseURL := os.Getenv("DATABASE_URL")
+	if databaseURL == "" {
+		log.Fatal("DATABASE_URL not set")
+	}
+	db, err := sql.Open("postgres", databaseURL)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Failed to open database:", err)
+	}
+
+	err = db.Ping()
+	if err != nil {
+		log.Fatal("Failed to communicate with database:", err)
 	}
 
 	store := store.New(db)

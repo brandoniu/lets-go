@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:password@localhost:5432/books?sslmode=disable
+      # - DATABASE_URL=postgres://postgres:password@db:5432/bookstore
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=books
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+# web: This is your Go application.
+
+# build: Defines the Dockerfile to use for building the image.
+# ports: Maps port 8080 inside the container to port 8080 on the host.
+# depends_on: Ensures that the db service starts before the web service.
+# environment: Sets an environment variable for the database URL, pointing to the PostgreSQL service named db.
+# db: This is the PostgreSQL service.
+
+# image: Uses the official PostgreSQL image version 13.
+# environment: Configures PostgreSQL with a user, password, and database name.
+# volumes: This ensures that even if the PostgreSQL container is stopped or removed, the data remains persistent.
+
+# Orchestrating multiple services (in this case, your app and the PostgreSQL database).
+# Defining how these services interact, their environment variables, ports, volumes, and other configurations.
+# Managing the life cycle of all the services together.
+
+# postgres://postgres:password@localhost:5432/books?sslmode=disable
