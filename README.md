@@ -1,5 +1,19 @@
 # lets-go
 
+### taskfile
+
+`brew install go-task`
+
+### golangci-lint
+
+`brew install golangci-lint`
+`golangci-lint run`
+`golangci-lint run --disable-all -E errcheck`
+
+## create a Taskfile.yml
+
+`task assets build`
+
 ### local development (sslmode=disable)
 
 [golang-migrate](https://github.com/golang-migrate/migrate/blob/v4.16.2/database/postgres/TUTORIAL.md)
