@@ -1,5 +1,23 @@
 # lets-go
 
+### local development (sslmode=disable)
+
+## docker build
+
+`docker-compose build`
+
+## docker run
+
+`docker-compose up`
+
+## curl post a new record
+
+`curl -X POST -H "Content-Type: application/json" -d '{"title":"DATA-ORIENTED DESIGN","author":"RICHARD FABIAN"}' http://localhost:8080/books`
+
+## get request in browser
+
+http://localhost:8080/books
+
 ### taskfile
 
 `brew install go-task`
@@ -14,7 +32,7 @@
 
 `task assets build`
 
-### local development (sslmode=disable)
+### migration tool
 
 [golang-migrate](https://github.com/golang-migrate/migrate/blob/v4.16.2/database/postgres/TUTORIAL.md)
 
