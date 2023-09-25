@@ -1,0 +1,10 @@
+FROM golang:1.21
+
+# Install golang-migrate
+RUN go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@latest
+
+# Set working directory
+WORKDIR /db/migrations
+
+# Copy migration files
+COPY ./db/migrations /db/migrations
