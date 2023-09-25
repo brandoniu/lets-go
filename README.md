@@ -39,6 +39,8 @@
 `INSERT INTO books (title, author) VALUES ( 'DATA-ORIENTED DESIGN', 'RICHARD FABIAN');`
 `INSERT INTO books (title, author) VALUES ( 'Software Engineering at Google', 'Winters');`
 
+`curl -X POST -H "Content-Type: application/json" -d '{"title":"DATA-ORIENTED DESIGN","author":"RICHARD FABIAN"}' http://localhost:8080/books`
+
 ### Docker
 
 `docker build -t lets-go-app .`
