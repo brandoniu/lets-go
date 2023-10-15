@@ -10,6 +10,8 @@
 
 `docker-compose up`
 
+## run the docker migrator once to perform migration
+
 ## curl post a new record
 
 `curl -X POST -H "Content-Type: application/json" -d '{"title":"DATA-ORIENTED DESIGN","author":"RICHARD FABIAN"}' http://localhost:8080/books`
