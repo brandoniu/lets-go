@@ -1,5 +1,6 @@
 package service
 
+//go:generate mockgen -source=book_service.go -destination=../mocks/book_service_mock.go -package=mocks
 import (
 	"github.com/brandoniu/lets-go/models"
 	"github.com/brandoniu/lets-go/repository"

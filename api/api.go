@@ -36,6 +36,10 @@ func (api *API) Run(port string) {
 	api.Router.Run(port)
 }
 
+func (api *API) GetRouter() *gin.Engine {
+	return api.Router
+}
+
 func (api *API) GetAllBooksHandler(c *gin.Context) {
 	books, err := api.Service.GetAllBooks()
 	if err != nil {
