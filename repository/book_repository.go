@@ -1,11 +1,12 @@
 package repository
 
+//go:generate mockgen -source=book_repository.go -destination=../mocks/book_repository_mock.go -package=repository
 import (
 	"context"
 	"errors"
 
 	"github.com/brandoniu/lets-go/models"
-	"github.com/jackc/pgx/v4"
+	"github.com/jackc/pgx/v5"
 )
 
 type BookRepository interface {

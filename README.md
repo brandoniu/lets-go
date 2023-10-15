@@ -74,6 +74,16 @@ http://localhost:8080/books
 
 `docker-compose up`
 
+### Testing
+
+`go get -u go.uber.org/mock/gomock
+go install go.uber.org/mock/mockgen`
+
+`mockgen -source=path/to/pgx/conn.go -destination=path/to/your/project/mocks/conn_mock.go -package=mocks
+`
+
+`go test ./...`
+
 ### Kubernetes, running local solution with EKS
 
 - install `kubectl` to configure communicate with cluster
